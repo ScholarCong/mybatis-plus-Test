@@ -1,0 +1,29 @@
+server:
+  port: 8090
+  servlet:    context-path: /
+
+spring:  datasource:
+    #引入druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/jtdb?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: root
+#springboot整合jsp
+  mvc:         #引入mvn配置 MVC全名是Model View Controller;一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，
+    view:      #将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。
+      prefix: /WEB-INF/     # /默认代表根目录 src/main/webapp
+      suffix: .jsp
+
+    #如果数据库密码以0开头 使用:""包裹
+mybatis-plus:
+  #定义别名包  简化查询resultType配置
+  type-aliases-package: com.jt.pojo
+  #Mybatis的映射文件路径
+  mapper-locations: classpath:/mybatis/mappers/*.xml
+  #开启驼峰映射    字段  属性 对应    去除字段中的"_"之后首字母大写
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:  level:
+    com.jt.mapper: debug
+  
